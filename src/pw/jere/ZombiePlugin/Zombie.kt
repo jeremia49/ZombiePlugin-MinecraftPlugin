@@ -58,12 +58,7 @@ class Zombie (val main:Main) : Listener {
             main.server.broadcastMessage("Probabilty is " + rate.toString())
 
             if(rand() > rate) return;
-
-            if(rand() < 0.3f){
-                e.entity.world.spawnEntity(e.entity.location, EntityType.WITHER_SKELETON)
-                e.entity.remove()
-            }
-
+            
             val swordrandom = randomSwordType()
 
             if(swordrandom.equals(SwordHierarcy.NOTHING)){
