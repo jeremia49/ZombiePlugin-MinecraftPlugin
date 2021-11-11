@@ -1,11 +1,9 @@
 package pw.jere.ZombiePlugin
 
+
 import org.bukkit.ChatColor
-import org.bukkit.Location
 import org.bukkit.Material
-import org.bukkit.World
 import org.bukkit.enchantments.Enchantment
-import org.bukkit.entity.EntityType
 import org.bukkit.entity.Skeleton
 import org.bukkit.entity.Zombie
 import org.bukkit.event.EventHandler
@@ -13,24 +11,12 @@ import org.bukkit.event.Listener
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDeathEvent
 import org.bukkit.inventory.ItemStack
-import org.bukkit.loot.LootTable
-import kotlin.random.Random
+import java.util.Random
 
 class Skeleton (val main:Main) : Listener {
     val maxSkeletonSpawnRate = 0.2f;
     val maxFullSpawnDate = 100f;
-//
-//    @EventHandler
-//    private fun onPlayerMove(e : PlayerMoveEvent){
-//        val from : Location = e.from
-//        val to : Location? = e.to
-//        if (to != null) {
-//            if(from.blockX == to.blockX && from.blockY == to.blockY && from.blockZ == to.blockZ){
-//                return
-//            }
-//            main.server.broadcastMessage("Game Time : " + (e.entity.world.fullTime/24000).toString())
-//        }
-//    }
+
 
     @EventHandler
     private fun onSkeletonSpawn(e : CreatureSpawnEvent){
@@ -87,9 +73,9 @@ class Skeleton (val main:Main) : Listener {
 
 
                 val bowStack : ItemStack = ItemStack(bow,1)
-                bowStack.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE,Random.nextInt(1,4))
-                bowStack.addUnsafeEnchantment(Enchantment.ARROW_FIRE,Random.nextInt(0,1))
-                bowStack.addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK,Random.nextInt(1,2))
+                bowStack.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE,rand(1,4))
+                bowStack.addUnsafeEnchantment(Enchantment.ARROW_FIRE,rand(0,1))
+                bowStack.addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK,rand(1,2))
 
 
                 val armorHelmetStack : ItemStack = ItemStack(armorHelmet,1)
@@ -97,17 +83,17 @@ class Skeleton (val main:Main) : Listener {
                 val armorChestplateStack: ItemStack= ItemStack(armorChestplate,1)
                 val armorLeggingsStack: ItemStack = ItemStack(armorLeggings,1)
 
-                armorHelmetStack.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, Random.nextInt(2,4))
-                armorHelmetStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, Random.nextInt(1,3))
+                armorHelmetStack.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, rand(2,4))
+                armorHelmetStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, rand(1,3))
 
-                armorBootsStack.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, Random.nextInt(2,4))
-                armorBootsStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, Random.nextInt(1,3))
+                armorBootsStack.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, rand(2,4))
+                armorBootsStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, rand(1,3))
 
-                armorChestplateStack.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, Random.nextInt(2,4))
-                armorChestplateStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, Random.nextInt(1,3))
+                armorChestplateStack.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, rand(2,4))
+                armorChestplateStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, rand(1,3))
 
-                armorLeggingsStack.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, Random.nextInt(2,4))
-                armorLeggingsStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, Random.nextInt(1,3))
+                armorLeggingsStack.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, rand(2,4))
+                armorLeggingsStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, rand(1,3))
 
                 e.entity.equipment?.setItemInMainHand(bowStack)
                 e.entity.equipment?.helmet = armorHelmetStack
@@ -203,34 +189,34 @@ class Skeleton (val main:Main) : Listener {
                 }
 
                 val swordStack : ItemStack = ItemStack(sword!!,1)
-                swordStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL,Random.nextInt(1,3))
+                swordStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL,rand(1,3))
                 e.entity.equipment?.setItemInMainHand(swordStack)
 
                 if(armorHelmet != null) {
                     val armorHelmetStack: ItemStack = ItemStack(armorHelmet, 1)
-                    armorHelmetStack.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, Random.nextInt(2,4))
-                    armorHelmetStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, Random.nextInt(1,3))
+                    armorHelmetStack.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, rand(2,4))
+                    armorHelmetStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, rand(1,3))
                     e.entity.equipment?.helmet = armorHelmetStack
                 }
 
                 if(armorBoots != null){
                     val armorBootsStack : ItemStack = ItemStack(armorBoots,1)
-                    armorBootsStack.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, Random.nextInt(2,4))
-                    armorBootsStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, Random.nextInt(1,3))
+                    armorBootsStack.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, rand(2,4))
+                    armorBootsStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, rand(1,3))
                     e.entity.equipment?.boots = armorBootsStack
                 }
 
                 if(armorChestplate != null){
                     val armorChestplateStack: ItemStack= ItemStack(armorChestplate,1)
-                    armorChestplateStack.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, Random.nextInt(2,4))
-                    armorChestplateStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, Random.nextInt(1,3))
+                    armorChestplateStack.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, rand(2,4))
+                    armorChestplateStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, rand(1,3))
                     e.entity.equipment?.chestplate = armorChestplateStack
                 }
 
                 if(armorLeggings != null){
                     val armorLeggingsStack: ItemStack = ItemStack(armorLeggings,1)
-                    armorLeggingsStack.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, Random.nextInt(2,4))
-                    armorLeggingsStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, Random.nextInt(1,3))
+                    armorLeggingsStack.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, rand(2,4))
+                    armorLeggingsStack.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, rand(1,3))
                     e.entity.equipment?.leggings = armorLeggingsStack
 
                 }
@@ -251,8 +237,13 @@ class Skeleton (val main:Main) : Listener {
     }
 
     private fun rand():Float{
-        return (Random.nextInt(1,100)).toFloat()/ 100
+        return ( 1 + Random().nextInt(100)).toFloat()/ 100
     }
+
+    private fun rand(lower:Int, until:Int) : Int{
+        return ( lower + Random().nextInt(until))
+    }
+
 
     private fun rand70Chance():Boolean{
         if(rand() < 0.7f){
@@ -270,7 +261,7 @@ class Skeleton (val main:Main) : Listener {
 
 
     private fun randomSwordType() : SwordHierarcy{
-        val useArmor : Float = (Random.nextInt(1,100)).toFloat()/ 100
+        val useArmor : Float = rand()
 
         //NOArmor = 50
         //useArmor = 50
@@ -286,7 +277,7 @@ class Skeleton (val main:Main) : Listener {
             return SwordHierarcy.NOTHING
         }else{
             //dengan sword
-            val armorRand : Float = (Random.nextInt(1,100)).toFloat()/ 100
+            val armorRand : Float = rand()
             if(armorRand < 0.5){
                 return SwordHierarcy.STONE
             }else if(armorRand < 0.8){
