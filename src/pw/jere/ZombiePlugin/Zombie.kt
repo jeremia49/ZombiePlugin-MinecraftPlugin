@@ -44,7 +44,7 @@ class Zombie (val main:Main) : Listener {
                 axeMaterial = if(typeRand < 0.5f){
                         Material.WOODEN_AXE
                     }else{
-                        Material.STONE_AXE
+                        Material.GOLDEN_AXE
                     }
 
             }else{
