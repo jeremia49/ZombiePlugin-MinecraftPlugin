@@ -1,6 +1,5 @@
 package pw.jere.ZombiePlugin
 
-
 public enum class ArmorHierarcy(val code : Int){
     NOTHING(0),
     LEATHER(1),

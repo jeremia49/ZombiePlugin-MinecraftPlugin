@@ -1,7 +1,6 @@
 package pw.jere.ZombiePlugin
 
 
-
 import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.enchantments.Enchantment
@@ -13,7 +12,7 @@ import org.bukkit.event.entity.EntityDeathEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
-import kotlin.random.Random
+import java.util.Random
 
 
 class Zombie (val main:Main) : Listener {
@@ -60,7 +59,7 @@ class Zombie (val main:Main) : Listener {
             }
 
             val axeStack : ItemStack = ItemStack(axeMaterial,1)
-            axeStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL,Random.nextInt(1,3))
+            axeStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, rand(1,3))
             e.entity.equipment?.setItemInMainHand(axeStack)
             e.entity.customName = ChatColor.RED.toString() + "Juggernaut Zombie"
             e.entity.isCustomNameVisible = true
@@ -83,12 +82,17 @@ class Zombie (val main:Main) : Listener {
     }
 
     private fun rand():Float{
-        return (Random.nextInt(1,100)).toFloat()/ 100
+        return ( 1 + Random().nextInt(100)).toFloat()/ 100
+    }
+
+    private fun rand(lower:Int, until:Int) : Int{
+        return ( lower + Random().nextInt(until))
     }
 
 
+
     private fun zombieType() : ZombieTier{
-        val zombieRand : Float = (Random.nextInt(1,100)).toFloat()/ 100
+        val zombieRand : Float = rand()
 
         //NOTHING = 50
 
@@ -99,7 +103,7 @@ class Zombie (val main:Main) : Listener {
             //Tier 1 = 70
             //Tier 2 = 30
 
-            val tierRand : Float = (Random.nextInt(1,100)).toFloat()/ 100
+            val tierRand : Float = rand()
             if(tierRand < 0.7f){
                 return ZombieTier.TIER_1
             }
