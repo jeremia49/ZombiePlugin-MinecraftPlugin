@@ -69,6 +69,10 @@ class Zombie (val main:Main) : Listener {
                 e.entity.addPotionEffect(PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,3600,1))
             }
 
+            if(!(e.entity as Zombie).isAdult){
+                e.entity.addPotionEffect(PotionEffect(PotionEffectType.SLOW,3600,3))
+            }
+
         }
     }
 
